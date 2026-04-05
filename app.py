@@ -106,7 +106,7 @@ st.markdown("""
 # ─── Load & Clean Data ─────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/rawDataset_WVI.csv")
+    df = pd.read_csv("data/rawDataset_-_WVI.csv")
     
     # Standardise column names
     df.columns = [c.strip() for c in df.columns]
@@ -426,7 +426,7 @@ if page == "🏠 Distribusi Umum":
             paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
             margin=dict(t=20, b=30), yaxis=dict(showgrid=True, gridcolor="#f0f0f0"),
         )
-        st.plotly_chart(fig_wil, use_container_width=True)
+        st.plotly_chart(fig_wil, width="stretch")
 
     with col2:
         st.markdown('<div class="section-title">⚥ Perbandingan Gender</div>', unsafe_allow_html=True)
@@ -436,7 +436,7 @@ if page == "🏠 Distribusi Umum":
             [COLOR_GENDER.get(l, "#ccc") for l in g_cnt.index],
             "Distribusi Jenis Kelamin",
         )
-        st.plotly_chart(fig_g, use_container_width=True)
+        st.plotly_chart(fig_g, width="stretch")
 
     # Row 2 – Usia & Wilayah × Gender
     col3, col4 = st.columns(2)
@@ -449,7 +449,7 @@ if page == "🏠 Distribusi Umum":
             [COLOR_UMUR.get(l, "#ccc") for l in u_cnt.index],
             "Kelompok Usia",
         )
-        st.plotly_chart(fig_u, use_container_width=True)
+        st.plotly_chart(fig_u, width="stretch")
 
     with col4:
         st.markdown('<div class="section-title">📊 Wilayah × Jenis Kelamin</div>', unsafe_allow_html=True)
@@ -466,7 +466,7 @@ if page == "🏠 Distribusi Umum":
             margin=dict(t=20, b=30), yaxis=dict(showgrid=True, gridcolor="#f0f0f0"),
             legend=dict(orientation="h", yanchor="bottom", y=-0.3, x=0.3),
         )
-        st.plotly_chart(fig_cross, use_container_width=True)
+        st.plotly_chart(fig_cross, width="stretch")
 
     # Row 3 – Usia × Wilayah & Kategori Coverage
     col5, col6 = st.columns(2)
@@ -486,7 +486,7 @@ if page == "🏠 Distribusi Umum":
             margin=dict(t=20, b=30), yaxis=dict(showgrid=True, gridcolor="#f0f0f0"),
             legend=dict(orientation="h", yanchor="bottom", y=-0.3, x=0.2),
         )
-        st.plotly_chart(fig_uage, use_container_width=True)
+        st.plotly_chart(fig_uage, width="stretch")
 
     with col6:
         st.markdown('<div class="section-title">📌 Cakupan Kategori Kondisi</div>', unsafe_allow_html=True)
@@ -509,7 +509,7 @@ if page == "🏠 Distribusi Umum":
             yaxis=dict(showgrid=True, gridcolor="#f0f0f0"),
             xaxis=dict(tickfont=dict(size=12)),
         )
-        st.plotly_chart(fig_cov, use_container_width=True)
+        st.plotly_chart(fig_cov, width="stretch")
 
     # Row 4 – Gender × Usia
     st.markdown('<div class="section-title">⚥🎂 Distribusi Gender per Kelompok Usia</div>', unsafe_allow_html=True)
@@ -524,7 +524,7 @@ if page == "🏠 Distribusi Umum":
         margin=dict(t=20, b=30), yaxis=dict(showgrid=True, gridcolor="#f0f0f0"),
         legend=dict(orientation="h", yanchor="bottom", y=-0.35, x=0.35),
     )
-    st.plotly_chart(fig_gu, use_container_width=True)
+    st.plotly_chart(fig_gu, width="stretch")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -561,7 +561,7 @@ elif page == "📚 Kondisi Pendidikan":
                 list(sub_counts.keys()), list(sub_counts.values()),
                 color="#2563eb", title="Frekuensi Sub-Kategori"
             )
-            st.plotly_chart(fig_sub, use_container_width=True)
+            st.plotly_chart(fig_sub, width="stretch")
 
     with col2:
         st.markdown('<div class="section-title">🌍 Distribusi per Wilayah</div>', unsafe_allow_html=True)
@@ -572,7 +572,7 @@ elif page == "📚 Kondisi Pendidikan":
         fig_wil2.update_layout(height=300, margin=dict(t=20, b=50),
                                 paper_bgcolor="rgba(0,0,0,0)",
                                 legend=dict(orientation="h", y=-0.2, x=0.2))
-        st.plotly_chart(fig_wil2, use_container_width=True)
+        st.plotly_chart(fig_wil2, width="stretch")
 
     # Breakdown
     col3, col4 = st.columns(2)
@@ -581,14 +581,14 @@ elif page == "📚 Kondisi Pendidikan":
         g2 = df_cat["Jenis Kelamin"].value_counts()
         fig_g2 = donut(g2.index.tolist(), g2.values.tolist(),
                        [COLOR_GENDER.get(l, "#ccc") for l in g2.index], "")
-        st.plotly_chart(fig_g2, use_container_width=True)
+        st.plotly_chart(fig_g2, width="stretch")
 
     with col4:
         st.markdown('<div class="section-title">🎂 Kelompok Usia</div>', unsafe_allow_html=True)
         u2 = df_cat["Umur"].value_counts()
         fig_u2 = donut(u2.index.tolist(), u2.values.tolist(),
                        [COLOR_UMUR.get(l, "#ccc") for l in u2.index], "")
-        st.plotly_chart(fig_u2, use_container_width=True)
+        st.plotly_chart(fig_u2, width="stretch")
 
     # Quotes per sub-category
     st.markdown("---")
@@ -637,7 +637,7 @@ elif page == "🛡️ Perlindungan Anak":
                 list(sub_counts.keys()), list(sub_counts.values()),
                 color="#d946ef", title="Frekuensi Sub-Kategori"
             )
-            st.plotly_chart(fig_sub, use_container_width=True)
+            st.plotly_chart(fig_sub, width="stretch")
 
     with col2:
         st.markdown('<div class="section-title">🌍 Distribusi per Wilayah</div>', unsafe_allow_html=True)
@@ -647,7 +647,7 @@ elif page == "🛡️ Perlindungan Anak":
         fig_wil2.update_layout(height=300, margin=dict(t=20, b=50),
                                 paper_bgcolor="rgba(0,0,0,0)",
                                 legend=dict(orientation="h", y=-0.2, x=0.2))
-        st.plotly_chart(fig_wil2, use_container_width=True)
+        st.plotly_chart(fig_wil2, width="stretch")
 
     col3, col4 = st.columns(2)
     with col3:
@@ -655,14 +655,14 @@ elif page == "🛡️ Perlindungan Anak":
         g2 = df_cat["Jenis Kelamin"].value_counts()
         fig_g2 = donut(g2.index.tolist(), g2.values.tolist(),
                        [COLOR_GENDER.get(l, "#ccc") for l in g2.index], "")
-        st.plotly_chart(fig_g2, use_container_width=True)
+        st.plotly_chart(fig_g2, width="stretch")
 
     with col4:
         st.markdown('<div class="section-title">🎂 Kelompok Usia</div>', unsafe_allow_html=True)
         u2 = df_cat["Umur"].value_counts()
         fig_u2 = donut(u2.index.tolist(), u2.values.tolist(),
                        [COLOR_UMUR.get(l, "#ccc") for l in u2.index], "")
-        st.plotly_chart(fig_u2, use_container_width=True)
+        st.plotly_chart(fig_u2, width="stretch")
 
     st.markdown("---")
     st.markdown('<div class="section-title">💬 Contoh Tanggapan per Sub-Kategori</div>', unsafe_allow_html=True)
@@ -708,7 +708,7 @@ elif page == "🏥 Kondisi Kesehatan":
                 list(sub_counts.keys()), list(sub_counts.values()),
                 color="#10b981", title="Frekuensi Sub-Kategori"
             )
-            st.plotly_chart(fig_sub, use_container_width=True)
+            st.plotly_chart(fig_sub, width="stretch")
 
     with col2:
         st.markdown('<div class="section-title">🌍 Distribusi per Wilayah</div>', unsafe_allow_html=True)
@@ -718,7 +718,7 @@ elif page == "🏥 Kondisi Kesehatan":
         fig_wil2.update_layout(height=300, margin=dict(t=20, b=50),
                                 paper_bgcolor="rgba(0,0,0,0)",
                                 legend=dict(orientation="h", y=-0.2, x=0.2))
-        st.plotly_chart(fig_wil2, use_container_width=True)
+        st.plotly_chart(fig_wil2, width="stretch")
 
     col3, col4 = st.columns(2)
     with col3:
@@ -726,14 +726,14 @@ elif page == "🏥 Kondisi Kesehatan":
         g2 = df_cat["Jenis Kelamin"].value_counts()
         fig_g2 = donut(g2.index.tolist(), g2.values.tolist(),
                        [COLOR_GENDER.get(l, "#ccc") for l in g2.index], "")
-        st.plotly_chart(fig_g2, use_container_width=True)
+        st.plotly_chart(fig_g2, width="stretch")
 
     with col4:
         st.markdown('<div class="section-title">🎂 Kelompok Usia</div>', unsafe_allow_html=True)
         u2 = df_cat["Umur"].value_counts()
         fig_u2 = donut(u2.index.tolist(), u2.values.tolist(),
                        [COLOR_UMUR.get(l, "#ccc") for l in u2.index], "")
-        st.plotly_chart(fig_u2, use_container_width=True)
+        st.plotly_chart(fig_u2, width="stretch")
 
     st.markdown("---")
     st.markdown('<div class="section-title">💬 Contoh Tanggapan per Sub-Kategori</div>', unsafe_allow_html=True)
@@ -779,7 +779,7 @@ elif page == "🤝 Kesejahteraan Sosial":
                 list(sub_counts.keys()), list(sub_counts.values()),
                 color="#f59e0b", title="Frekuensi Sub-Kategori"
             )
-            st.plotly_chart(fig_sub, use_container_width=True)
+            st.plotly_chart(fig_sub, width="stretch")
 
     with col2:
         st.markdown('<div class="section-title">🌍 Distribusi per Wilayah</div>', unsafe_allow_html=True)
@@ -789,7 +789,7 @@ elif page == "🤝 Kesejahteraan Sosial":
         fig_wil2.update_layout(height=300, margin=dict(t=20, b=50),
                                 paper_bgcolor="rgba(0,0,0,0)",
                                 legend=dict(orientation="h", y=-0.2, x=0.2))
-        st.plotly_chart(fig_wil2, use_container_width=True)
+        st.plotly_chart(fig_wil2, width="stretch")
 
     col3, col4 = st.columns(2)
     with col3:
@@ -797,14 +797,14 @@ elif page == "🤝 Kesejahteraan Sosial":
         g2 = df_cat["Jenis Kelamin"].value_counts()
         fig_g2 = donut(g2.index.tolist(), g2.values.tolist(),
                        [COLOR_GENDER.get(l, "#ccc") for l in g2.index], "")
-        st.plotly_chart(fig_g2, use_container_width=True)
+        st.plotly_chart(fig_g2, width="stretch")
 
     with col4:
         st.markdown('<div class="section-title">🎂 Kelompok Usia</div>', unsafe_allow_html=True)
         u2 = df_cat["Umur"].value_counts()
         fig_u2 = donut(u2.index.tolist(), u2.values.tolist(),
                        [COLOR_UMUR.get(l, "#ccc") for l in u2.index], "")
-        st.plotly_chart(fig_u2, use_container_width=True)
+        st.plotly_chart(fig_u2, width="stretch")
 
     st.markdown("---")
     st.markdown('<div class="section-title">💬 Contoh Tanggapan per Sub-Kategori</div>', unsafe_allow_html=True)
@@ -845,4 +845,4 @@ elif page == "🤝 Kesejahteraan Sosial":
         )
         fig_sun.update_layout(height=500, margin=dict(t=20, b=20),
                                paper_bgcolor="rgba(0,0,0,0)")
-        st.plotly_chart(fig_sun, use_container_width=True)
+        st.plotly_chart(fig_sun, width="stretch")
