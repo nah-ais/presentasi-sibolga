@@ -338,7 +338,7 @@ df      = classify_data(df_raw)
 
 # Sidebar navigation
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/World_Vision_logo.svg/200px-World_Vision_logo.svg.png", width=140)
+    st.image("wvi-logo.svg", width=140)
     st.markdown("---")
     page = st.radio(
         "📊 Navigasi Dashboard",
