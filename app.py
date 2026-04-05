@@ -106,7 +106,7 @@ st.markdown("""
 # ─── Load & Clean Data ─────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/rawDataset_-_WVI.csv")
+    df = pd.read_csv("data/rawDataset_WVI.csv")
     
     # Standardise column names
     df.columns = [c.strip() for c in df.columns]
