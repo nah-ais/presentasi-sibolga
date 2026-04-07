@@ -392,7 +392,7 @@ if page == "🏠 Distribusi Umum":
     st.markdown("""
     <div class="main-header">
       <h1>🌊 Distribusi Umum Responden</h1>
-      <p>Gambaran keseluruhan profil responden pasca bencana banjir – WVI 2025</p>
+      <p>Gambaran keseluruhan profil responden pasca bencana banjir – WVI 2026</p>
     </div>
     """, unsafe_allow_html=True)
 
